@@ -87,7 +87,6 @@ describe("Router", () => {
         expect(onEnter).toHaveBeenCalled();
     });
 
-
     it("should return params for regex path", () => {
         expect(extractParams(/^\/test\/(?<id>\d+)$/, "/test/123")).toEqual({ id: "123" });
     });
@@ -102,7 +101,7 @@ describe("Router", () => {
         await router.navigate("#/");
         window.dispatchEvent(new HashChangeEvent("hashchange"));
         expect(onEnter).toHaveBeenCalled();
-    })
+    });
 
     it("should work with funcitons", async () => {
         const onEnter = jest.fn();
@@ -110,7 +109,7 @@ describe("Router", () => {
 
         await router.navigate("/");
         expect(onEnter).toHaveBeenCalled();
-    })
+    });
 
     it("shoiuld delete route by callback function", async () => {
         const onEnter = jest.fn();
@@ -122,5 +121,5 @@ describe("Router", () => {
         removeFn();
         await router.navigate("/");
         expect(onEnter).toHaveBeenCalledTimes(1);
-    })
+    });
 });

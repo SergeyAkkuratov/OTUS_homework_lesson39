@@ -1,6 +1,6 @@
 type Param = {
     [key: string]: string | number;
-}
+};
 
 type RouteConfig = {
     path: string | RegExp | ((path: string | RegExp) => boolean);
@@ -15,7 +15,7 @@ export function extractParams(routePath: RegExp, path: string): Param {
 }
 
 type RouterOptions = {
-    mode: 'hash' | 'history';
+    mode: "hash" | "history";
 };
 
 export default class Router {
@@ -27,10 +27,10 @@ export default class Router {
 
     constructor(options: RouterOptions) {
         this.options = options;
-        if (this.options.mode === 'hash') {
-            window.addEventListener('hashchange', this.handleRouteChange.bind(this));
+        if (this.options.mode === "hash") {
+            window.addEventListener("hashchange", this.handleRouteChange.bind(this));
         } else {
-            window.addEventListener('popstate', this.handleRouteChange.bind(this));
+            window.addEventListener("popstate", this.handleRouteChange.bind(this));
         }
         this.handleRouteChange();
     }
@@ -39,7 +39,7 @@ export default class Router {
         this.routes.push(route);
         return () => {
             this.routes.splice(this.routes.indexOf(route), 1);
-        }
+        };
     }
 
     private async handleRouteChange() {
@@ -66,19 +66,18 @@ export default class Router {
     }
 
     private getCurrentPath(): string {
-        if (this.options.mode === 'hash') {
+        if (this.options.mode === "hash") {
             return window.location.hash.slice(1);
         }
         return window.location.pathname;
-
     }
 
     private matchRoute(path: string): RouteConfig | undefined {
-        return this.routes.find(route => {
-            if (typeof route.path === 'string') {
+        return this.routes.find((route) => {
+            if (typeof route.path === "string") {
                 return route.path === path;
             }
-            
+
             if (route.path instanceof RegExp) {
                 return route.path.test(path);
             }
@@ -88,11 +87,11 @@ export default class Router {
     }
 
     public navigate(path: string) {
-        if (this.options.mode === 'hash') {
+        if (this.options.mode === "hash") {
             window.location.hash = path;
         } else {
             window.history.pushState(null, path, path);
             this.handleRouteChange();
         }
     }
-};
+}
