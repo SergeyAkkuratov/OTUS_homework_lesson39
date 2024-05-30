@@ -10,7 +10,7 @@ Router для реализации SPA приложения на TypeScript.
 
 `npm install @sergey.akkuratov/router`
 
-or 
+or
 
 `yarn add @sergey.akkuratov/router`
 
@@ -29,13 +29,16 @@ const router = new Router({ mode: "history" });
 ```javascript
 router.addRoute({
     path: "/about", // путь, на который переходим (сожет быть строкой, RegExp или функцией, возвращающей boolean)
-    onBeforeEnter: async () => { // фунция, которую надо выполнить перед переходом по path
+    onBeforeEnter: async () => {
+        // фунция, которую надо выполнить перед переходом по path
         console.log("Before entering about route");
     },
-    onEnter: async () => { // фунция, которую надо выполнить после перехода по path
+    onEnter: async () => {
+        // фунция, которую надо выполнить после перехода по path
         console.log("Entered about route");
     },
-    onLeave: async () => { // фунция, которую надо выполнить после ухода с path
+    onLeave: async () => {
+        // фунция, которую надо выполнить после ухода с path
         console.log("Leaving about route");
     },
 });
@@ -45,14 +48,14 @@ router.addRoute({
 
 ```javascript
 const deleteRoute = router.addRoute({
-    path: "/about"
+    path: "/about",
 });
 
-deleteRoute() // удаляем роут
+deleteRoute(); // удаляем роут
 ```
 
 Изменение адреса без вызова стандартных сообытий перехода.
 
 ```javascript
-router.navigate("/about") // произойдёт только изменение адреса без обращения к серверу, но с обработкой роутов
+router.navigate("/about"); // произойдёт только изменение адреса без обращения к серверу, но с обработкой роутов
 ```

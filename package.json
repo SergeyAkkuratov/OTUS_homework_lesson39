@@ -1,10 +1,15 @@
 {
     "name": "sa-router-spa",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Выполнение ДЗ для лекции \"Клиентский роутинг, как строится одностраничное приложение\"",
     "types": "module/router.d.ts",
     "main": "module/router.js",
-    "files": ["dist", "LICENSE", "README.md", "package.json"],
+    "files": [
+        "dist",
+        "LICENSE",
+        "README.md",
+        "package.json"
+    ],
     "scripts": {
         "test": "tsc && jest --passWithNoTests --coverage",
         "lint": "prettier --check . && eslint . --ext .js,.ts",
