@@ -1,4 +1,4 @@
-import Router, { extractParams } from "./router";
+import Router from "./router";
 
 describe("Router", () => {
     let router: Router;
@@ -85,10 +85,6 @@ describe("Router", () => {
         window.dispatchEvent(new PopStateEvent("popstate"));
 
         expect(onEnter).toHaveBeenCalled();
-    });
-
-    it("should return params for regex path", () => {
-        expect(extractParams(/^\/test\/(?<id>\d+)$/, "/test/123")).toEqual({ id: "123" });
     });
 
     it("should navigate with hash", async () => {

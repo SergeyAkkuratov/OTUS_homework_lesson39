@@ -9,7 +9,7 @@ type RouteConfig = {
     onLeave?: (params?: Param) => Promise<void> | void;
 };
 
-export function extractParams(routePath: RegExp, path: string): Param {
+function extractParams(routePath: RegExp, path: string): Param {
     const match = path.match(routePath);
     return match?.groups ?? {};
 }
@@ -33,13 +33,6 @@ export default class Router {
             window.addEventListener("popstate", this.handleRouteChange.bind(this));
         }
         this.handleRouteChange();
-    }
-
-    public addRoute(route: RouteConfig) {
-        this.routes.push(route);
-        return () => {
-            this.routes.splice(this.routes.indexOf(route), 1);
-        };
     }
 
     private async handleRouteChange() {
@@ -93,5 +86,12 @@ export default class Router {
             window.history.pushState(null, path, path);
             this.handleRouteChange();
         }
+    }
+
+    public addRoute(route: RouteConfig) {
+        this.routes.push(route);
+        return () => {
+            this.routes.splice(this.routes.indexOf(route), 1);
+        };
     }
 }
